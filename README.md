@@ -1,1 +1,3 @@
-# project-blog-django
+# Blog
+
+BLog criando utilizando Python com Django
