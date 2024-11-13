@@ -1,0 +1,24 @@
+---
+services:
+  database:
+    container_name: blog-db
+    image: postgres:13-alpine
+    volumes:
+      - ./data/postgres/data:/var/lib/postgresql/data/
+    env_file:
+      - ./dotenv_files/.env
+
+  application:
+    container_name: blog-app
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./application:/application
+      - ./data/web/static:/data/web/static/
+      - ./data/web/media:/data/web/media/
+    env_file:
+      - ./dotenv_files/.env
+    depends_on:
+      - database
